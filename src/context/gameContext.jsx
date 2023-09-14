@@ -5,17 +5,16 @@ const gameContext = createContext();
 
 const GameProvider = ({ children }) => {
   const [index, setIndex] = useState(0);
-  const [cards, setCards] = useState([]);
+  const [gameCards, setGameCards] = useState([]);
   const [firstSelection, setfirstSelection] = useState(null);
   const [secondSelection, setsecondSelection] = useState(null);
   const [matchedPair, setMatchedPair] = useState(0);
   const [gameStart, setGameStart] = useState(true);
-  const [score, setScore] = useState(0);
+  const [gameScore, setGameScore] = useState(0);
   const [timer, setTimer] = useState(60);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [gameEnd, setGameEnd] = useState(false);
   const [count, setCount] = useState(5);
-  const [clickCount, setClickCount] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
   const [disabled, setDisabled] = useState(false);
 
@@ -56,7 +55,7 @@ const GameProvider = ({ children }) => {
   const shuffleCards = () => {
     const shuffledCards = [...images, ...images].map((card) => ({ ...card, id: Math.random() }));
     shuffleArray(shuffledCards);
-    setCards(shuffledCards);
+    setGameCards(shuffledCards);
   };
   
   // function that decides the selected choice is first or second
@@ -69,10 +68,9 @@ const GameProvider = ({ children }) => {
     if (firstSelection && secondSelection) {
       setDisabled(true);
       if (firstSelection.src === secondSelection.src) {
-        setScore((prev) => prev + 5);
-        setClickCount(clickCount + 1);
+        setGameScore((prev) => prev + 5);
         setMatchedPair(matchedPair + 1);
-        setCards((prevCards) => {
+        setGameCards((prevCards) => {
           return prevCards.map((card) => {
             if (card.src === firstSelection.src) {
               return { ...card, matched: true };
@@ -81,10 +79,10 @@ const GameProvider = ({ children }) => {
             }
           });
         });
-        resetTurn();
+        resetCardTurn();
       } else {
         setTimeout(() => {
-          resetTurn();
+          resetCardTurn();
         }, 700);
       }
     }
@@ -115,11 +113,11 @@ const GameProvider = ({ children }) => {
 
   // start the second quiz after first is completed
   useEffect(() => {
-    if (clickCount === 5) {
+    if (matchedPair === 5) {
       shuffleCards();
       setGameStart(true);
     }
-  }, [clickCount === 5 && clickCount, gameEnd]);
+  }, [matchedPair === 5 && matchedPair, gameEnd]);
 
   //gameStart
   useEffect(() => {
@@ -129,7 +127,7 @@ const GameProvider = ({ children }) => {
   }, [gameEnd]);
 
   //initial matched image phase
-  const resetTurn = () => {
+  const resetCardTurn = () => {
     setfirstSelection(null);
     setsecondSelection(null);
     setDisabled(false);
@@ -150,10 +148,8 @@ const GameProvider = ({ children }) => {
         setGameEnd,
         count,
         setCount,
-        clickCount,
-        setClickCount,
-        cards,
-        setCards,
+        gameCards,
+        setGameCards,
         firstSelection,
         setfirstSelection,
         secondSelection,
@@ -161,8 +157,8 @@ const GameProvider = ({ children }) => {
         gameStart,
         setGameStart,
         matchedPair,
-        score,
-        setScore,
+        gameScore,
+        setGameScore,
         timer,
         setTimer,
       }}

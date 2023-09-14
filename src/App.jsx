@@ -16,13 +16,13 @@ function App() {
    setModalIsOpen,
     timer,
     disabled,
-    cards,
+    gameCards,
     firstSelection,
     secondSelection,
     gameStart,
     matchedPair,
     setGameStart,
-    score,
+    gameScore,
     modalIsOpen,
     count,
    
@@ -57,21 +57,21 @@ function App() {
             </div>
             <div className="text-2xl text-gray-600  font-bold">
             {
-              cards.length<=10 ? <p>Level 1</p>:<p>Level 2</p>
+              gameCards.length<=10 ? <p>Level 1</p>:<p>Level 2</p>
             }
             </div>
             
 
             <div className="flex gap-10 text-gray-600">
               <p className="text-2xl text-brown-200  font-bold">
-                Score: {score}
+                Score: {gameScore}
               </p>
               <p className="text-2xl text-brown-200  font-bold">
                 Timer: {timer}
               </p>
             </div>
           </div>
-          <p className="text-center text-xl text-gray-600">Match the cards</p>
+          <p className="text-center text-xl text-gray-600">Match the gameCards</p>
           <p className="text-xl text-green-800">Matched Pair {matchedPair}</p>
 
           {
@@ -94,8 +94,8 @@ function App() {
               </p>
             </div>
           ) : (
-            <div className="cards max-w-[50vw] max-h-[80vh] flex flex-wrap justify-around gap-5 cursor-pointer">
-              {cards.map((card) => (
+            <div className="gameCards max-w-[50vw] max-h-[80vh] flex flex-wrap justify-around gap-5 cursor-pointer">
+              {gameCards.map((card) => (
                 <Card
                   card={card}
                   flipped={
