@@ -7,7 +7,7 @@ import InfoIcon from '@mui/icons-material/Info';
 const PopUpModal = ({resumeGameHandler,refreshWindow}) => {
   return (
     <div className='flex justify-center items-center bg-black/40  fixed inset-0'>
-        <div id='modal-container ' className='bg-white flex flex-col justify-center items-center min-w-[40%] h-[40%] p-5 rounded-2xl text-xl text-gray-500 px-10 py-10'>
+        <div id='modal-container ' className='bg-white flex flex-col justify-center items-center min-w-[40%] min-h-[40%] p-5 rounded-2xl text-xl text-gray-500 px-10 py-10'>
             <span id='modal-memory-card'>MEMORY CARDS</span>
             <p className='text-center'> <InfoIcon className='text-cyan-600' /> Remember the cards. Once the cards are flipped over, find the matching cards.</p>
             <br />
