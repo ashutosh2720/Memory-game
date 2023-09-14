@@ -11,7 +11,7 @@ const GameProvider = ({ children }) => {
   const [matchedPair, setMatchedPair] = useState(0);
   const [gameStart, setGameStart] = useState(true);
   const [score, setScore] = useState(0);
-  const [timer, setTimer] = useState(90);
+  const [timer, setTimer] = useState(60);
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [gameEnd, setGameEnd] = useState(false);
   const [count, setCount] = useState(5);
@@ -29,23 +29,36 @@ const GameProvider = ({ children }) => {
 
   //seting the time limit for game
   useEffect(() => {
-    if (!gameStart && !isPaused) {
-      const time = setInterval(() => {
+    let timerId;
+  
+    if (!gameStart && !isPaused && timer > 0) {
+      timerId = setTimeout(() => {
         setTimer((prev) => prev - 1);
       }, 1000);
-      return () => clearInterval(time);
     }
-  }, [gameStart, isPaused]);
+  
+    return () => {
+      clearTimeout(timerId);
+    };
+  }, [gameStart, isPaused, timer]);
+  
 
   // function for card suffling using math function
   const images = cardData["Card-Flip"][index].imageSet;
+
+  const shuffleArray = (array) => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  };
+  
   const shuffleCards = () => {
-    const shuffledCards = [...images, ...images]
-      .sort(() => Math.random() - 0.8)
-      .map((card) => ({ ...card, id: Math.random() }));
+    const shuffledCards = [...images, ...images].map((card) => ({ ...card, id: Math.random() }));
+    shuffleArray(shuffledCards);
     setCards(shuffledCards);
   };
-
+  
   // function that decides the selected choice is first or second
   const handleChoice = (card) => {
     firstSelection ? setsecondSelection(card) : setfirstSelection(card);
