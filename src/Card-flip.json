@@ -1,0 +1,57 @@
+{
+    "Card-Flip": [
+      {
+        "imageSet": [
+          {
+            "src": "animals/cow.png",
+            "matched": false
+          },
+          {
+            "src": "animals/rabbit.png",
+            "matched": false
+          },
+          {
+            "src": "animals/dog.png",
+            "matched": false
+          },
+          {
+            "src": "animals/cat.png",
+            "matched": false
+          },
+          {
+            "src": "animals/camel.png",
+            "matched": false
+          }
+         
+        ]
+      },
+      {
+        "imageSet": [
+          {
+            "src": "study_material/pen.jpeg",
+            "matched": false
+          },
+          {
+            "src": "study_material/pencil.jpeg",
+            "matched": false
+          },
+          {
+            "src": "study_material/book.jpeg",
+            "matched": false
+          },
+          {
+            "src": "study_material/eraser.png",
+            "matched": false
+          },
+          {
+            "src": "study_material/sharpner.jpeg",
+            "matched": false
+          },
+          {
+            "src": "study_material/notebook.jpeg",
+            "matched": false
+          }
+        ]
+      }
+    ]
+  }
