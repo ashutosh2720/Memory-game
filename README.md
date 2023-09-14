@@ -17,7 +17,7 @@ A classic Memory Game built with React and styled with Tailwind CSS. The objecti
 
 ## Demo
 
-You can play the game live here: [Play Memory Game](link-to-your-game)
+You can play the game live here: [Play Memory Game]([link-to-your-game](https://memory-game-mentalup.netlify.app/))
 
 ## Installation
 
