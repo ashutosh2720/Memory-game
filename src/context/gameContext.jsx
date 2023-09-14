@@ -114,7 +114,9 @@ const GameProvider = ({ children }) => {
   // start the second quiz after first is completed
   useEffect(() => {
     if (matchedPair === 5) {
+    setTimeout(()=>{
       shuffleCards();
+    },2000)
       setGameStart(true);
     }
   }, [matchedPair === 5 && matchedPair, gameEnd]);

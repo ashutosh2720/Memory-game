@@ -94,7 +94,7 @@ function App() {
               </p>
             </div>
           ) : (
-            <div className="gameCards max-w-[50vw] max-h-[80vh] flex flex-wrap justify-around gap-5 cursor-pointer">
+            <div className="gameCards  max-w-[50vw] min-h-[100%] flex flex-wrap justify-center gap-5 cursor-pointer">
               {gameCards.map((card) => (
                 <Card
                   card={card}
